@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title playground
+  %body
+    #playground
+      %h1 #{@playground.app_name} playground
+      %p
+        These are the files in 
+        %a{:href=>"file://#{@playground.root}"} app/views/playground
+        [
+        %a{:href=>@playground.txmt} textmate
+        ]
+      -@playground.layouts.each do |layout|
+        %h3=layout
+
+        %ul.list
+          -@playground.files_with_layout(layout).each do |file|
+            %li
+              %span
+                %a{:href=>file.url}=file.name
+              [
+              %a{:href=>file.txmt} textmate
+              ]
